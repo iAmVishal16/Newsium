@@ -11,7 +11,8 @@ import SwiftUI
 struct NewsiumApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView(viewModel: HomeView.ViewModel())
+                .preferredColorScheme(.dark)
         }
     }
 }
