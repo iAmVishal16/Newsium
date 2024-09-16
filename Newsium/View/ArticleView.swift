@@ -9,26 +9,40 @@ import SwiftUI
 
 struct ArticleView: View {
     
-    var article: Articles
-    
+    var article: Articles?
+    let animation: Namespace.ID
+    var onTap: (_ article: Articles) -> Void
+
     var body: some View {
         GeometryReader { proxy in
             VStack(spacing: 0) {
-                Image("PHNews")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .redacted(reason: article == nil ? .placeholder : [])
-
+                
+                if let article = article, let urlToImage = article.urlToImage, let url = URL(string: urlToImage) {
+                    AsyncImage(url: url, content: { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    }, placeholder: {
+                        ZStack {
+                            Image(systemName: "text.below.photo.fill")
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                                .foregroundStyle(.thinMaterial)
+                        }
+                    })
+//                    .matchedGeometryEffect(id: "image", in: animation, anchor: .top)
+                }
+                
                 ZStack {
                     
-                    Text(article.title ?? "")
+                    Text(article?.title ?? "")
                         .font(.title)
                         .fontWeight(.regular)
                         .foregroundStyle(.black)
                         .lineLimit(2)
                         .padding()
                         .zIndex(1.0)
-                        .redacted(reason: article == nil ? .placeholder : [])
+//                        .matchedGeometryEffect(id: "title", in: animation, anchor: .top)
 
                     Rectangle()
                         .frame(height: 100)
@@ -42,6 +56,11 @@ struct ArticleView: View {
             .clipShape(RoundedRectangle(cornerRadius: 24))
         }
         .padding(.horizontal, 16)
+        .onTapGesture {
+            if let article = article {
+                self.onTap(article)
+            }
+        }
     }
 }
 

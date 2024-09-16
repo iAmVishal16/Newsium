@@ -9,14 +9,17 @@ import Foundation
 import Combine
 
 extension HomeView {
-    @Observable
-    class ViewModel {
+    
+    class ViewModel: ObservableObject {
         private var networkService = NetworkService.shared
         
-        private(set) var articles: [Articles] = []
-        private(set) var isLoading = false
+        @Published private(set) var articles: [Articles] = []
+        @Published private(set) var isLoading = false
+        
         private var bags = Set<AnyCancellable>()
 
+        var selectedArticle: Articles?
+        
         init() {
             
         }
@@ -25,15 +28,19 @@ extension HomeView {
             self.isLoading = true
             
             networkService.getArticles(for: category).sink { error in
-                self.isLoading = false
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                }
+                
                 print(error)
+                    
             } receiveValue: { response in
                 print(response.articles?.count ?? 0)
                 
-                self.isLoading = false
                 guard let articles = response.articles else { return }
                 
                 DispatchQueue.main.async {
+                    self.isLoading = false
                     if isLoadMore {
                         // TODO: will implement load more data here
                     } else {

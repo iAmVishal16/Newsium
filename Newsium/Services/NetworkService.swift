@@ -24,7 +24,7 @@ extension NetworkService: NetworkServiceProtocol {
     func getArticles(for category: String) -> Future<ArticlesResponse, Error> {
         return Future { promise in
             
-            var urlString = API.articlesRequestURL
+            let urlString = API.articlesRequestURL + "?country=us" + "&category=\(category)"
             
             guard let url = URL(string: urlString) else {
                 let error = NSError(domain: "", code: 0, userInfo: ["info": "Invalid URL"])
@@ -33,7 +33,7 @@ extension NetworkService: NetworkServiceProtocol {
             }
             
             var urlRequest = URLRequest(url: url)
-//            urlRequest.addValue(API.key, forHTTPHeaderField: "Authorization")
+            urlRequest.addValue(API.key, forHTTPHeaderField: "Authorization")
             
             self.connector.connect(for: urlRequest)
                 .sink { error in

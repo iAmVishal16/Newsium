@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A17E8502C98950100EA1657 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A17E84F2C98950100EA1657 /* Extensions.swift */; };
+		2A17E8522C9897E300EA1657 /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A17E8512C9897E300EA1657 /* CategorySelectionView.swift */; };
 		D3EFDF732C95E910003E4EF2 /* NewsiumApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EFDF722C95E910003E4EF2 /* NewsiumApp.swift */; };
 		D3EFDF752C95E910003E4EF2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EFDF742C95E910003E4EF2 /* HomeView.swift */; };
 		D3EFDF772C95E912003E4EF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3EFDF762C95E912003E4EF2 /* Assets.xcassets */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A17E84F2C98950100EA1657 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		2A17E8512C9897E300EA1657 /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
 		D3EFDF6F2C95E910003E4EF2 /* Newsium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Newsium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3EFDF722C95E910003E4EF2 /* NewsiumApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsiumApp.swift; sourceTree = "<group>"; };
 		D3EFDF742C95E910003E4EF2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -101,6 +105,7 @@
 				D3EFDF742C95E910003E4EF2 /* HomeView.swift */,
 				D3EFDF852C9602BF003E4EF2 /* ArticleView.swift */,
 				D3EFDF872C9725FD003E4EF2 /* ArticleDetailsView.swift */,
+				2A17E8512C9897E300EA1657 /* CategorySelectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -152,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				D3EFDF992C974E6D003E4EF2 /* Constants.swift */,
+				2A17E84F2C98950100EA1657 /* Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -234,11 +240,13 @@
 				D3EFDF732C95E910003E4EF2 /* NewsiumApp.swift in Sources */,
 				D3EFDF862C9602BF003E4EF2 /* ArticleView.swift in Sources */,
 				D3EFDF9C2C975216003E4EF2 /* HomeView-ViewModel.swift in Sources */,
+				2A17E8522C9897E300EA1657 /* CategorySelectionView.swift in Sources */,
 				D3EFDF8E2C974491003E4EF2 /* NetworkService.swift in Sources */,
 				D3EFDF962C974B99003E4EF2 /* Source.swift in Sources */,
 				D3EFDF972C974B99003E4EF2 /* Articles.swift in Sources */,
 				D3EFDF952C974B99003E4EF2 /* ArticlesResponse.swift in Sources */,
 				D3EFDF9A2C974E6D003E4EF2 /* Constants.swift in Sources */,
+				2A17E8502C98950100EA1657 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

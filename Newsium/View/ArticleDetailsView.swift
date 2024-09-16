@@ -8,27 +8,45 @@
 import SwiftUI
 
 struct ArticleDetailsView: View {
+    
+    let animation: Namespace.ID
+
+    @Binding var isShowDetails: Bool
+    
+    var article: Articles
+
     var body: some View {
         GeometryReader { proxy in
             ScrollView(.vertical) {
                 VStack(spacing: 0) {
-                    Image("PHNews")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: proxy.size.width, height: 425)
                     
-                    Text("Smart speaker wars: As Amazon moves up, Sonos moves out")
+                    if let urlToImage = article.urlToImage, let url = URL(string: urlToImage) {
+                        AsyncImage(url: url, content: { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: proxy.size.width, height: 425)
+//                                .matchedGeometryEffect(id: "image", in: animation, anchor: .top)
+                        }, placeholder: {
+                            Image(systemName: "photo")
+                        })
+                    }
+                    
+                    Text(article.title ?? "")
                         .font(.title).bold()
-                        .padding(.horizontal, 8)
+                        .padding(.horizontal, 24)
                         .padding(.top, 16)
                         .lineSpacing(5)
+//                        .matchedGeometryEffect(id: "title", in: animation, anchor: .top)
 
-                    Text("Voice agents like Alexa have already caused Sonos to rethink its product line. Now, it's looking beyond the home as Amazon starts to go for its throat with the Echo Studio. Holding the Tokyo Olympics any time before a vaccine is found will be “very unrealistic,” according to a leading global health expert. Professor Devi Sridhar said that the development of the vaccine will be key to when the Olympics can be held.\r\nSridhar,")
+
+                    Text(article.content ?? "")
                         .font(.body)
                         .padding(.horizontal, 24)
                         .padding(.top)
                         .lineSpacing(10.0)
-                    
+//                        .matchedGeometryEffect(id: "description", in: animation, anchor: .top)
+
                     VPButtonView(title: "Read More")
                         .frame(width: 300)
                         .padding(.top, 48)
@@ -44,10 +62,13 @@ struct ArticleDetailsView: View {
                 .frame(width: 24, height: 24)
                 .padding(.trailing, 24)
                 .foregroundStyle(.regularMaterial.opacity(0.8))
+                .onTapGesture {
+                    self.isShowDetails = false
+                }
         }
     }
 }
 
-#Preview {
-    ArticleDetailsView()
-}
+//#Preview {
+//    ArticleDetailsView()
+//}
