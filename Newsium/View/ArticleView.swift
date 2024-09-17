@@ -54,9 +54,9 @@ struct ArticleView: View {
                 }
             }
             .frame(width: proxy.size.width, height: 425)
-            .clipShape(RoundedRectangle(cornerRadius: 24))
         }
         .padding(.horizontal, 16)
+        .clipShape(RoundedRectangle(cornerRadius: 24))
         .onTapGesture {
             if let article = article {
                 self.onTap(article)

@@ -48,7 +48,7 @@ struct HomeView: View {
                                         .foregroundStyle(
                                             /*article.isBookMarked ? .accent :*/ .white.opacity(0.5)
                                         )
-                                        .padding(.bottom, 118)
+                                        .padding(.bottom, 128)
                                         .padding(.trailing, 32)
                                         .zIndex(1.0)
                                 }
@@ -73,7 +73,7 @@ struct HomeView: View {
                                             .padding()
                                             .background(.ultraThinMaterial)
                                             .clipShape(Capsule())
-                                            .padding(.bottom, 108)
+                                            .padding(.bottom, 118)
                                             .padding(.leading, 32)
                                     })
                                 }
@@ -100,4 +100,5 @@ struct HomeView: View {
 
 #Preview {
     HomeView(viewModel: HomeView.ViewModel())
+        .preferredColorScheme(.dark)
 }
