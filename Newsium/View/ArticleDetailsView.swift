@@ -26,7 +26,7 @@ struct ArticleDetailsView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: proxy.size.width, height: 425)
-//                                .matchedGeometryEffect(id: "image", in: animation, anchor: .top)
+                                .matchedGeometryEffect(id: urlToImage, in: animation, anchor: .top)
                         }, placeholder: {
                             Image(systemName: "photo")
                         })
@@ -37,7 +37,7 @@ struct ArticleDetailsView: View {
                         .padding(.horizontal, 24)
                         .padding(.top, 16)
                         .lineSpacing(5)
-//                        .matchedGeometryEffect(id: "title", in: animation, anchor: .top)
+                        .matchedGeometryEffect(id: article.title, in: animation, anchor: .top)
 
 
                     Text(article.content ?? "")
@@ -45,7 +45,7 @@ struct ArticleDetailsView: View {
                         .padding(.horizontal, 24)
                         .padding(.top)
                         .lineSpacing(10.0)
-//                        .matchedGeometryEffect(id: "description", in: animation, anchor: .top)
+                        .matchedGeometryEffect(id: article.content, in: animation, anchor: .top)
 
                     VPButtonView(title: "Read More")
                         .frame(width: 300)

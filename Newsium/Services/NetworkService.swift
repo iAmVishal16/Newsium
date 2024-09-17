@@ -69,7 +69,10 @@ struct Connector {
                 switch httpResponse.statusCode {
                 case 200...299:
                     do {
-                        let response = try JSONDecoder().decode(T.self, from: data)
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = .iso8601
+                        let response = try decoder.decode(T.self, from: data)
+
                         promise(.success(response))
                     } catch let error {
                         let apiError = NSError(domain: "", code: httpResponse.statusCode, userInfo: ["info": error.localizedDescription])

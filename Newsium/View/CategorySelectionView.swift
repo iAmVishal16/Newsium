@@ -16,25 +16,32 @@ struct CategorySelectionView: View {
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 16) {
-                ForEach(categories, id: \.self) { category in
-                    Text(category)
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 16)
-                        .background(
-                            .clear
-                        )
-                        .foregroundStyle (
-                            selectedCategory == category ? Color.white : Color.gray.opacity(0.5)
-                        )
-                        .cornerRadius(10)
-                        .onTapGesture {
-                            selectedCategory = category
-                            viewModel.requestArticles(for: selectedCategory.lowercased())
-                        }
+            ScrollViewReader { scrollViewProxy in
+                HStack(spacing: 16) {
+                    ForEach(categories, id: \.self) { category in
+                        Text(category)
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 16)
+                            .background(
+                                .clear
+                            )
+                            .foregroundStyle (
+                                selectedCategory == category ? Color.white : Color.gray.opacity(0.5)
+                            )
+                            .cornerRadius(10)
+                            .id(category)
+                            .onTapGesture {
+                                selectedCategory = category
+                                viewModel.requestArticles(for: selectedCategory.lowercased())
+                                
+                                withAnimation {
+                                    scrollViewProxy.scrollTo(selectedCategory, anchor: .center)
+                                }
+                            }
+                    }
                 }
+                .padding(.horizontal)
             }
-            .padding(.horizontal)
         }
         .frame(height: 50)
     }

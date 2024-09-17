@@ -36,6 +36,49 @@ struct HomeView: View {
                                     self.isShowDetails = true
                                 }
                             }
+                            .overlay(alignment: .bottomTrailing) {
+                                let article = viewModel.articles[item]
+
+                                Button {
+//                                    viewModel.articles[item].isBookMarked = true
+                                } label: {
+                                    Image(systemName: "bookmark.fill")
+                                        .resizable()
+                                        .frame(width: 20, height: 25)
+                                        .foregroundStyle(
+                                            /*article.isBookMarked ? .accent :*/ .white.opacity(0.5)
+                                        )
+                                        .padding(.bottom, 118)
+                                        .padding(.trailing, 32)
+                                        .zIndex(1.0)
+                                }
+
+                            }
+                            .overlay(alignment: .topTrailing, content: {
+                                let article = viewModel.articles[item]
+
+                                Text(article.publishedAt.toString(format: "EEE, d MMM"))
+                                    .padding(.trailing, 32)
+                                    .padding(.top)
+                                    .shadow(radius: 5)
+                            })
+                            .overlay(alignment: .bottomLeading, content: {
+                                let article = viewModel.articles[item]
+
+                                if let author = article.author {
+                                    ZStack(content: {
+                                        Text(author)
+                                            .font(.caption)
+                                            .foregroundStyle(.white)
+                                            .padding()
+                                            .background(.ultraThinMaterial)
+                                            .clipShape(Capsule())
+                                            .padding(.bottom, 108)
+                                            .padding(.leading, 32)
+                                    })
+                                }
+
+                            })
                             .tag(item)
                             .frame(height: 425)
                             .padding(.bottom)
@@ -51,6 +94,8 @@ struct HomeView: View {
             }
         }
     }
+    
+    
 }
 
 #Preview {

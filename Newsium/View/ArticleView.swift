@@ -22,15 +22,16 @@ struct ArticleView: View {
                         image
                             .resizable()
                             .aspectRatio(contentMode: .fill)
+                            .matchedGeometryEffect(id: urlToImage, in: animation, anchor: .top)
                     }, placeholder: {
                         ZStack {
                             Image(systemName: "text.below.photo.fill")
                                 .resizable()
+                                .aspectRatio(contentMode: .fill)
                                 .frame(width: 100, height: 100)
                                 .foregroundStyle(.thinMaterial)
                         }
                     })
-//                    .matchedGeometryEffect(id: "image", in: animation, anchor: .top)
                 }
                 
                 ZStack {
@@ -42,7 +43,7 @@ struct ArticleView: View {
                         .lineLimit(2)
                         .padding()
                         .zIndex(1.0)
-//                        .matchedGeometryEffect(id: "title", in: animation, anchor: .top)
+                        .matchedGeometryEffect(id: article?.title ?? "", in: animation, anchor: .top)
 
                     Rectangle()
                         .frame(height: 100)
